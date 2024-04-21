@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript练习</title>
+    <style></style>
+</head>
+<body>
+    <!-- javascript是动态弱语言类型 -->
+    <script>
+    console.log("hhh");
+    var a = function (x ,y) {
+        x + y;
+    }
+    console.log(a(1,8));
+    </script>
+    <!-- jquery练习 -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <!-- <botton id="test"> 点我看看</botton>
+    <input type="text" value="hello"/>
+    <script>$("test").click(
+        function() {
+            $("test").attr("font-size","10px");
+        }
+    )</script>  -->
+    <img src="./img/3d9bf03ba33b909ec8450e94f8607c96.jpeg" id="im">
+    <!-- <input type="button" id="test"> 点我看看</input> -->
+    <button id="test">点我看看</button>
+    <script>
+        $("#test").click(function() {
+            // $("#im").attr("width","200px");
+            $("#im").attr("src","https://images2.gamme.com.tw/news2/2012/51/77/p5_XnaGYj6SW.jpg");
+        })
+    </script>
+
+</body>
+</html>
