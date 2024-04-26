@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>留言板</title>
+    <style>
+        .container {
+            width: 350px;
+            height: 300px;
+            /* 居中 */
+            margin: 0 auto;
+            /* border: 1px black solid; */
+            text-align: center;
+        }
+
+        .grey {
+            color: grey;
+        }
+
+        .container .row {
+            width: 350px;
+            height: 40px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .container .row input {
+            width: 260px;
+            height: 30px;
+        }
+
+        #submit {
+            width: 350px;
+            height: 40px;
+            background-color: rgba(67, 121, 236, 0.699);
+            color: white;
+            border: none;
+            margin: 10px;
+            border-radius: 5px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>留言板</h1>
+        <p class="grey">输入后点击提交, 会将信息显示下方空白处</p>
+        <div class="row">
+            <span>谁:</span> <input type="text" name="" id="from">
+        </div>
+        <div class="row">
+            <span>对谁:</span> <input type="text" name="" id="to">
+        </div>
+        <div class="row">
+            <span>说什么:</span> <input type="text" name="" id="say">
+        </div>
+        <input type="button" value="提交" id="submit" onclick="submit()">
+        <!-- <div>A 对 B 说: hello</div> -->
+    </div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $.ajax({
+            url: "/message/show",
+            type: "get",
+            success: function(result) {
+                var messageHtml = "";
+                for (var content of result) {
+                    console.log(content);
+                     messageHtml += "<div>"+content.from + "对" + content.to + "说: " + content.say +"</div>";
+                 }
+                 console.log(messageHtml);
+                $(".container").append(messageHtml);
+            }
+         })
+
+        function submit(){
+            var from = $("#from").val();
+            var to = $("#to").val();
+            var say = $("#say").val();
+            // var content = "<div>"+from + "对" + to + "说: " + say +"</div>";
+            if (from == '' || to == '' || say == '') return;
+            $.ajax({
+                url: "/message/add",
+                type: "get",
+                data: {
+                    "from":from,
+                    "to":to,
+                    "say": say
+                },
+                success: function(result) {
+                    if(!result) {
+                        alert("添加失败");
+                    } else {
+                        var content =  "<div>"+from + "对" +to + "说: " + say +"</div>";
+                        console.log(content);
+                        $(".container").append(content);
+                        $("#from").val("");
+                        $("#to").val("");
+                        $("#say").val("");
+                    }
+                } 
+            })
+        
+        }
+    </script>
+</body>
+<!-- 
+    添加留言接口1：
+    url: /message/add
+    params: from,to,say
+    return: 成功/失败 true or false
+
+    显示信息接口:
+    url: /message/show
+    params: 
+    return: list[{}{}{}]
+ -->
+</html>

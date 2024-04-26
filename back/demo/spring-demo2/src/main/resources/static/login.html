@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,10 +16,40 @@
   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script>
     function login() {
-    
+      $.ajax({
+        url:"/user/login",
+        type: "post",
+        data: {
+          userName: $("#userName").val(),
+          password: $("#password").val()
+        },
+        // http响应成功，result接收响应结果
+        success: function(result) {
+          if (result == true) {
+            // 页面跳转
+            location.href ="/index.html";
+            // location.assign = "/index.html"
+            // location.replace
+          } else{
+            alert("密码错误")
+          }
+        }
+
+      })
     }
 
   </script>
 </body>
 
 </html>
+<!-- 
+    接口1：用户登录
+    url:  127.0.0.1:8080/user/login
+    params: userName, password
+    return:  密码正确/失败  true、false
+
+    接口2：获取当前登录用户
+    url: /user/index
+    params: 
+    return userName
+ -->
