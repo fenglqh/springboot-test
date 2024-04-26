@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 //@RestController
 @Controller
 public class ResponseController {
+    @RequestMapping("/index")
     public String index() {
         return "/index.html";
     }

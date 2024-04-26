@@ -1,17 +1,16 @@
 package com.example.springdemo2;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Arrays;
+import java.util.List;
 
 //RequestMapping 进行路由映射，/可以写可以不写但建议写
 @RequestMapping("/req")
 @RestController
 public class RequestController {
-    @RequestMapping("/r1")
+    @RequestMapping(value = "/r1", method = RequestMethod.GET)
     public String r1 (Integer age) {//传入一个整型
         return "age:" + age;
     }
@@ -40,8 +39,31 @@ public class RequestController {
         return "username:" + username;
     }
 
+    @RequestMapping("/r8")
+    public String r8 (@RequestParam(value = "name", required = false) String username) {//表示允许不带参数请求
+        return username;
+    }
+
+//    接收数组
+    @RequestMapping("/r9")
+    public String r9(String[] array) {
+        return "数组:  " + Arrays.toString(array);
+    }
+    @RequestMapping("/r10")
+//    接收集合
+    public String r10(@RequestParam(required = false) List<String> list) {
+        return list.toString();
+    }
+//    从路径中接收参数
     @RequestMapping("r1/{articleId}")
     public String r8(@PathVariable("articleId") Integer articleId) {
         return "接收到参数，articleId：" + articleId;
+    }
+//    上传文件
+    @RequestMapping("/r11")
+    public String r11(@RequestPart("file") MultipartFile imgFile) {
+        String originalFilename = imgFile.getOriginalFilename();
+        return "接收到的文件的文件名称呼： "+ originalFilename;
+
     }
 }
