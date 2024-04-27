@@ -3,19 +3,19 @@ package com.example.springdemo2;
 import java.util.Arrays;
 
 public class TestDemo {
-    public static void main(String[] args) {
+    public static void main2(String[] args) {
         for (int i = 0; i < 11; i++) {
             System.out.println(i +"  "+  Integer.toBinaryString(i));
 //            System.out.println(i +"  "+  Integer.toUnsignedString(i));
         }
     }
-    public static void main2(String[] args) {
+    public static void main(String[] args) {
         int a = -1, b = -2, c = -3;
         System.out.println(Integer.toBinaryString(a));
         System.out.println(Integer.toBinaryString(b));
         System.out.println(Integer.toBinaryString(c));
         int[] nums = {-1,0,-3,0,-2,-2};
-        System.out.println((-1)^(-3));
+//        System.out.println((-1)^(-3));
         System.out.println(Arrays.toString(singleNumber(nums)));
     }
     public static int[] singleNumber(int[] nums) {
