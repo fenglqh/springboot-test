@@ -1,6 +1,6 @@
-package com.example.springdemo3;
+package com.example.springdemo3.controller;
 
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
