@@ -1,4 +1,4 @@
-package com.example.springdemo2;
+package com.example.springdemo2.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;

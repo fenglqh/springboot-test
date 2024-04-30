@@ -1,5 +1,6 @@
-package com.example.springdemo2;
+package com.example.springdemo2.controller;
 
+import com.example.springdemo2.Student;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -65,5 +66,9 @@ public class RequestController {
         String originalFilename = imgFile.getOriginalFilename();
         return "接收到的文件的文件名称呼： "+ originalFilename;
 
+    }
+    @RequestMapping("/r12")
+    public String r12(@RequestBody Student student) {//接收json字符串
+        return student.toString();
     }
 }

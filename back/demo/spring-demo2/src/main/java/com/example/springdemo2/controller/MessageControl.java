@@ -1,5 +1,6 @@
-package com.example.springdemo2;
+package com.example.springdemo2.controller;
 
+import com.example.springdemo2.MessageInfo;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;

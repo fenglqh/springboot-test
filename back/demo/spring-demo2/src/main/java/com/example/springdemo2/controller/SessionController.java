@@ -1,4 +1,4 @@
-package com.example.springdemo2;
+package com.example.springdemo2.controller;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
