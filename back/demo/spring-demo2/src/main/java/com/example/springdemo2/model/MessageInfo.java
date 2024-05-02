@@ -1,4 +1,4 @@
-package com.example.springdemo2;
+package com.example.springdemo2.model;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;

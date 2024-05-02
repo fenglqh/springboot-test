@@ -1,7 +1,7 @@
 package com.example.springdemo2.controller;
 
-import com.example.springdemo2.MessageInfo;
-import com.example.springdemo2.Student;
+import com.example.springdemo2.model.MessageInfo;
+import com.example.springdemo2.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

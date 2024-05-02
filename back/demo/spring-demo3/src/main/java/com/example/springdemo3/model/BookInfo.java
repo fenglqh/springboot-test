@@ -1,8 +1,10 @@
 package com.example.springdemo3.model;
 
 import lombok.Data;
+import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
+//@Repository
 @Data
 public class BookInfo {
     private Integer id;

@@ -1,11 +1,9 @@
 package com.example.springdemo2.controller;
 
-import com.example.springdemo2.MessageInfo;
-import jakarta.servlet.http.HttpSession;
+import com.example.springdemo2.model.MessageInfo;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.ArrayList;
 import java.util.List;

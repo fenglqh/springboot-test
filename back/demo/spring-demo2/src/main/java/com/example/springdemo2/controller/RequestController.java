@@ -1,6 +1,6 @@
 package com.example.springdemo2.controller;
 
-import com.example.springdemo2.Student;
+import com.example.springdemo2.model.Student;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
