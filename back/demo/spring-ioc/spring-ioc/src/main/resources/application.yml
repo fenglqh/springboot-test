@@ -1,8 +1,9 @@
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/mybatis_test?characterEncoding=utf8&useSSL=false
+#    url: jdbc:mysql://127.0.0.1:3306/mybatis_test?characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/mybatis_test?characterEncoding=utf8
     username: root
-    password: 11
+    password: ccc123
     driver-class-name: com.mysql.cj.jdbc.Driver
   application:
     name: spring-ioc
