@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: spring-demo2
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/mybatis_test?characterEncoding=utf8&useSSL=false
+    username: root
+    password: ccc123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+# ?? Mybatis ? xml ????
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  configuration: # ???? MyBatis ??? SQL
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    map-underscore-to-camel-case: true  #??????
+# ???? MyBatis ??? SQL
+logging:
+  level:
+    com:
+      example:
+        demo: debug
+
