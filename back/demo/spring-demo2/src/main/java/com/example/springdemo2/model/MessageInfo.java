@@ -16,7 +16,7 @@ public class MessageInfo {
     private String to;
     // 加个映射，与数据库里的message对应
     private String say;
-    private Integer delete_flag; // 0-正常， 1-删除
-    private Date create_time;
-    private Date update_time;
+    private Integer deleteFlag; // 0-正常， 1-删除
+    private Date createTime;
+    private Date updateTime;
 }

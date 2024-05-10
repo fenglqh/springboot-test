@@ -5,19 +5,21 @@ spring:
     password: ccc123
     driver-class-name: com.mysql.cj.jdbc.Driver
 mybatis:
-#  mapper-locations: classpath:mapper/*Mapper.xml
+  # 配置mybatis xml 的文件路径 在resources / mapper下创建所有表的xml文件
+  mapper-locations: classpath:mapper/*Mapper.xml
+  # * 表示通配符， ** 表示多位匹配， 文件夹名可以随意更改，但是要保持一致
   configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 配置打印mybatis日志
     map-underscore-to-camel-case: true # 驼峰自动转换
-logging:
+#logging:
 #  file:
 #    name: logs/springboot.log
 #  logback:
 #    rollingpolicy:
 #      max-file-size: 1KB
 #      file-name-pattern: ${LOG_FILE}.%d{yyyy-MM-dd}.%i #将日志保存
-  level:
-    com:
-      example:
-        demo: debug
+#  level:
+#    com:
+#      example:
+#        demo: debug
 

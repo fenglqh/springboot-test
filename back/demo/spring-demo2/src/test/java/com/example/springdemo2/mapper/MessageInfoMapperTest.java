@@ -10,12 +10,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 @SpringBootTest
 class MessageInfoMapperTest {
-    private static final Logger log = LoggerFactory.getLogger(MessageInfoMapperTest.class);
+//    private static final Logger log = LoggerFactory.getLogger(MessageInfoMapperTest.class);
     @Autowired
     private MessageInfoMapper messageInfoMapper;
     @Test
     void selectAllMessageInfo() {
         List<MessageInfo> messageInfos = messageInfoMapper.selectAllMessageInfo();
+        for (MessageInfo messageInfo : messageInfos) {
+            System.out.println(messageInfo);
+        }
     }
 
     @Test

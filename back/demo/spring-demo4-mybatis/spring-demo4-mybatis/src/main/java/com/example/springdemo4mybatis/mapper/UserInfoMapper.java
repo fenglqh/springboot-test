@@ -35,15 +35,16 @@ public interface UserInfoMapper {
     @Select("select * from userinfo where id = #{userInfo.id}")
     UserInfo getUserInfoBy2Id(@Param("userInfo") UserInfo userInfo);
 
-    // 试一试如果安装条件查多了怎么办
-    // 会报错
+    // 试一试如果按照条件查多了怎么办，并且返回值是一个对象
+    // 会报错 可以设置成列表返回，这样数据无论是一条还是多条都不会报错
     @Select("select * from userinfo where delete_flag = #{deleteFlag}")
-    UserInfo getUserInfoByDeleteFlag(Integer deleteFlag);
+    List<UserInfo> getUserInfoByDeleteFlag(Integer deleteFlag);
 
     // 添加数据  当数据库主键没有设置自动递增的时候会报错
     // keyProperty = "id": 这个选项指定了一个 Java 对象的属性名，用于存储生成的主键值。
     // 在这个例子中，表示将生成的主键值设置到对象的 id 属性中。
-    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id") // 标识主键属性，并且递增
+//    @Options(useGeneratedKeys = true, keyProperty = "userName")
+// 标识主键属性，并且递增, 只传指定参数的话就没有多余的参数去接收主键的值,用先有的参数也接收不了
     @Insert("insert into userinfo(username, password, age) values (" +
             "#{userName}, #{password}, #{age})")
     Integer insertUserInfo(String userName, String password, Integer age);
@@ -53,11 +54,16 @@ public interface UserInfoMapper {
             "#{userInfo.username}, #{userInfo.password}, #{userInfo.age})")
     Integer insertUserInfo1(@Param("userInfo") UserInfo userInfo);
 
-    @Options(useGeneratedKeys = true, keyProperty = "id")
+//    @Options 这个注解是可以获取到对应的主键id，就是可以从数据库中拿到id
+    @Options(useGeneratedKeys = true, keyProperty = "age")
     @Insert("insert into userinfo (username, password, age) values (" +
             "#{username}, #{password}, #{age})")
     Integer insertUserInfo2(UserInfo userInfo);
-
+//    删除
     @Delete("delete from userinfo where id = #{id}")
     Integer deleteUserInfoById(Integer id);
+
+//    更新
+    @Update("update userinfo set username = #{username} where id = #{id}")
+    Integer updateUserInfo(String username, Integer id);
 }

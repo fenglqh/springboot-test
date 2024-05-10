@@ -21,9 +21,9 @@ public class BookDao {
             bookInfo.setId(i);
             bookInfo.setAuthor("夜神月" + i);
             bookInfo.setBookName("书" + i);
-            bookInfo.setNumbers(i*2);
+//            bookInfo.setNumbers(i*2);
             bookInfo.setPrice(new BigDecimal(3*i));
-            bookInfo.setPublisher("出版社" + i);
+//            bookInfo.setPublisher("出版社" + i);
             if (i % 3 == 0) {
                 bookInfo.setStatus(2);
             } else {

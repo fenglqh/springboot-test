@@ -41,7 +41,10 @@ class UserInfoMapperTest {
 //        Integer i = userInfoMapper.insertUserInfo("ming", "joe", 13);
 //        System.out.println(i);
         // 试一试数据库没设置主键递增会怎么样 好了结果会报错
-        userInfoMapper.insertUserInfo("泰兰德","yy", 18);
+        String userName = "泰兰德";
+        Integer i = userInfoMapper.insertUserInfo(userName, "yy", 18);
+        System.out.println(i);
+        System.out.println(userName);
 
     }
 
@@ -61,6 +64,7 @@ class UserInfoMapperTest {
         userInfo.setPassword("mmj");
         userInfo.setAge(15);
         userInfoMapper.insertUserInfo2(userInfo);
+        System.out.println(userInfo.getAge());
     }
 
 
@@ -74,7 +78,7 @@ class UserInfoMapperTest {
 
     @Test
     void getUserInfoByDeleteFlag() {
-        UserInfo userInfoByDeleteFlag = userInfoMapper.getUserInfoByDeleteFlag(1);
+        List<UserInfo> userInfoByDeleteFlag = userInfoMapper.getUserInfoByDeleteFlag(1);
         System.out.println(userInfoByDeleteFlag);
     }
 
@@ -89,5 +93,10 @@ class UserInfoMapperTest {
         for (UserInfo userInfo : userInfoAll1) {
             System.out.println(userInfo);
         }
+    }
+
+    @Test
+    void updateUserInfo() {
+        userInfoMapper.updateUserInfo("xixi",16);
     }
 }
