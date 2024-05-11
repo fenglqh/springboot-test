@@ -2,7 +2,18 @@ spring:
   application:
     name: spring-demo3
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/mybatis_test?characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/mybatis_test?characterEncoding=utf8&useSSL=true
     username: root
     password: ccc123
     driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  configuration: # 配置打印 MyBatis 执行的 SQL
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 配置打印 MyBatis 执行的 SQL
+    map-underscore-to-camel-case: true  #自动驼峰转换
+logging:
+  level:
+    com:
+      example:
+        demo: info
+

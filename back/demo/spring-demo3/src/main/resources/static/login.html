@@ -13,7 +13,12 @@
             color: #fff;
             background-color: #ee0a7c40;
             border-color:  #ee0a7c40;
+    
 }
+#tip{
+            color: red;
+            font-size: 12px;
+        }    
     </style>
 </head>
 
@@ -32,10 +37,10 @@
                 <span>密码</span>
                 <input type="password" name="password" id="password" class="form-control">
             </div>
-            <span id="tip">jjj</span>
-           <!-- <div class="row">
+            <!-- <span id="tip"></span> -->
+           <div class="row">
                <span id="tip"></span>
-            </div> -->
+            </div>
             <div class="row">
                 <button type="button" class="btn btn-info btn-lg" onclick="login()">登录</button>
             </div>
@@ -55,7 +60,7 @@
                     if (result == "登录成功") {
                         location.href = "book_list.html";
                     } else {
-                        alert(result);
+                        // alert(result);
                         $("#tip").text(result);
                     }
                 }
