@@ -64,8 +64,23 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script>
         function add() {
-            alert("添加成功");
-            location.href = "book_list.html";
+            console.log($("#addBook").serialize()),
+            $.ajax({
+                    url: "/book/addBook",
+                    type: "get",
+                    data: $("#addBook").serialize(),
+                    success: function(result) {
+                        if (result != "") {
+                            alert(result);
+                        } else {
+                            location.href = "book_list.html";
+                        }
+                    },
+                    error: function() {
+                        alert("请联系管理员")
+                    }
+                    
+                })
         }
     </script>
 </body>

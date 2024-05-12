@@ -45,6 +45,13 @@ public enum BookStatus {
         }
     }
 
+    public static Integer getCode(String desc) {
+        switch (desc) {
+            case "已删除": return DELETE.getCode();
+            case "可借阅": return NORMAL.getCode();
+            default: return FORBIDDEN.getCode();
+        }
+    }
     private static HashMap<Integer,String> hashMap = new HashMap<>();
     static {
         for (BookStatus bookStatus : BookStatus.values()) {
@@ -54,5 +61,6 @@ public enum BookStatus {
     public static String getDestByHash(Integer code) {
         return hashMap.get(code);
     }
+
 
 }

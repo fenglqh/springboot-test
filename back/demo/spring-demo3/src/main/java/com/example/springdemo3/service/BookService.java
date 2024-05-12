@@ -30,15 +30,28 @@ public class BookService {
     }
 
 
-    public List<BookInfo> queryBookListByPage(int pageNum) {
+    /**
+     * 查询具体某一页的数据
+     * @param pageNum
+     * @return
+     */
+    public PageResult<BookInfo> queryBookListByPage(int pageNum) {
         // 查询要根据limit和offset来进行，所以需要先计算
-        PageQuery pageQuery = new PageQuery(pageNum);
-        List<BookInfo> bookInfos = bookInfoMapper.getBookInfoByPage(pageQuery);
-        return bookInfos;
+        PageQuery pageQuery = new PageQuery();
+        pageQuery.setPageNum(pageNum);
+        List<BookInfo> bookInfos = bookInfoMapper.getBookInfoByPage(pageQuery.getOffset(),pageQuery.getPageSize());
+        // 对数据库数据进行处理
+        for (BookInfo bookInfo : bookInfos) {
+            bookInfo.setStatusCN(BookStatus.getDestByHash(bookInfo.getStatus()));
+        }
+        Integer count = bookInfoMapper.getCount();
+        return new PageResult(bookInfos, count, pageQuery);
     }
 
-    public Integer queryCount() {
-        Integer count = bookInfoMapper.getCount();
-        return count;
+    public Integer addBook(BookInfo bookInfo) {
+        // 参数校验 前端处理好了后端就不要处理了
+//        if (bookInfo.getStatusCN() == null) bookInfo.setStatus(1);
+//        else bookInfo.setStatus(BookStatus.getCode(bookInfo.getStatusCN()));
+        return bookInfoMapper.insertBookInfo(bookInfo);
     }
 }

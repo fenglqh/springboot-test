@@ -15,7 +15,7 @@ public class BookInfo {
     private Integer count;
     private BigDecimal price;
     private String publish;
-    private Integer status;// 1表示可借阅 2表示不可借阅
+    private Integer status;// 0 表示已经删除 1表示可借阅 2表示不可借阅
     private String statusCN;
     private Date createTime;
     private Date updateTime;
