@@ -73,7 +73,7 @@
                         var ret = '';
                         for (var res of result.bookInfos) {
                             ret += '<tr>';
-                            ret += '<td><input type="checkbox" name="selectBook" value="1" id="selectBook" class="book-select"></td>';
+                            ret += '<td><input type="checkbox" name="selectBook" value="'+res.id+'" id="selectBook" class="book-select"></td>';
                             ret += '<td>' + res.id + '</td>';
                             ret += '<td>' + res.bookName + '</td>';
                             ret += '<td>' + res.author + '</td>';
@@ -121,7 +121,18 @@
                 var isDelete = confirm("确认删除?");
                 if (isDelete) {
                     //删除图书
-                    alert("删除成功");
+                    $.ajax({
+                        url: "book/deleteBook?id="+id,
+                        type: "get",
+                        success: function(result) {
+                            if (result == "") {
+                                location.href = "book_list.html";
+                            } else {
+                                alert(result);
+                            }
+                        }
+                    })
+                    
                 }
             }
             function batchDelete() {
@@ -133,7 +144,18 @@
                         ids.push($(this).val());
                     });
                     console.log(ids);
-                    alert("批量删除成功");
+                    $.ajax({
+                        url: "/book/batchDeleteBook?ids=" + ids,
+                        type: "get",
+                        success: function(result) {
+                            if (result == "") {
+                                location.href = "book_list.html";
+                            } else {
+                                alert(result);
+                            }
+                        }
+                    })
+                    
                 }
             }
 
@@ -154,4 +176,8 @@
     param: pageNum(pageSize就交给后端来定义)
     return: list,count (前端需要count来判断显示多少个框)
     
+    删除的接口：
+    url : book/deleteBook
+    param : id
+    return : ""
  -->

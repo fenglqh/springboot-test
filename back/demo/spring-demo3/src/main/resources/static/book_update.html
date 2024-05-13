@@ -59,12 +59,72 @@
     </div>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script>
+        //  问题如何拿到前一个网页传过来的参数
+        // 从url中获取变量 1. 解析url 2. location·search
         
+        $.ajax({
+                url: "/book/getBookListById" + location.search,
+                type: "get",
+                success: function(result) {
+            
+                    if(result == null) {
+                        alert("后台出错，请联系管理员！");
+                        return;
+                    }
+                    // 要更新数据肯定得知道具体的id是什么
+                    $("#bookId").val(result.id);
+                    $("#bookName").val(result.bookName);
+                    $("#bookAuthor").val(result.author);
+                    $("#bookStock").val(result.count);
+                    $("#bookPrice").val(result.price);
+                    $("#bookPublisher").val(result.publish);
+                    $("#bookStatus").val(result.status)
+                }
+            })
+
         function update() {
-            alert("更新成功");
-            location.href = "book_list.html"
+            $.ajax({
+                url: "/book/updateBook",
+                type: "get",
+                data: 
+                $("#updateBook").serialize(),
+                // {
+                //     // id : $("#bookId").val(),
+                //     // bookName: $("#bookName").val(),
+                //     // author: $("#bookAuthor").val(),
+                //     // count : $("#bookStock").val(),
+                //     // price : $("#bookPrice").val(),
+                //     // publish : $("#bookPublisher").val(),
+                //     // status : $("#bookStatus").val()
+                    
+                // }, 
+                success: function(result) {
+                    console.log(result);
+                    if (result != "") {
+                        alert("更新失败！");
+                    } else {
+                        location.href = "book_list.html";
+                    }
+                }
+
+            })
+           
         }
     </script>
 </body>
 
 </html>
+
+<!-- 
+    写接口，修改图书需要先显示图书的信息，然后再根据需求修改
+    显示图书信息:
+    url: /book/getBookListById
+    param: id
+    return: BookInfo
+
+    修改图书信息
+    url: /book/updateBook
+    param: id
+    return ""
+
+ -->

@@ -5,6 +5,7 @@ import com.example.springdemo3.mapper.BookInfoMapper;
 import com.example.springdemo3.model.BookInfo;
 import com.example.springdemo3.model.PageResult;
 import com.example.springdemo3.model.PageQuery;
+import com.example.springdemo3.model.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,5 +54,23 @@ public class BookService {
 //        if (bookInfo.getStatusCN() == null) bookInfo.setStatus(1);
 //        else bookInfo.setStatus(BookStatus.getCode(bookInfo.getStatusCN()));
         return bookInfoMapper.insertBookInfo(bookInfo);
+    }
+
+    public BookInfo queryBookListById(Integer id) {
+        BookInfo bookInfo = bookInfoMapper.selectBookInfoById(id);
+        bookInfo.setStatusCN(BookStatus.getDestByHash(bookInfo.getStatus()));
+        return bookInfo;
+    }
+
+    public Integer updateBook(BookInfo bookInfo) {
+        return bookInfoMapper.updateBookById(bookInfo);
+    }
+
+    public Integer deleteBook(Integer id) {
+        return bookInfoMapper.deleteBookById(id);
+    }
+
+    public Integer batchDeleteBook(List<Integer> ids) {
+        return bookInfoMapper.batchDeleteBook(ids);
     }
 }
