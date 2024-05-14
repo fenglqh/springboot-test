@@ -1,4 +1,4 @@
-package com.example.springdemo3;
+package com.example.springdemo3.enums;
 
 import java.util.HashMap;
 

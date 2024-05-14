@@ -1,20 +1,22 @@
 package com.example.springdemo3.controller;
-
+import com.example.springdemo3.constants.Constant;
+import com.example.springdemo3.enums.ResultStatus;
 import com.example.springdemo3.model.BookInfo;
 import com.example.springdemo3.model.PageResult;
-import com.example.springdemo3.model.UserInfo;
+import com.example.springdemo3.model.Result;
 import com.example.springdemo3.service.BookService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
+import java.net.http.HttpResponse;
 import java.util.List;
+
+import static com.example.springdemo3.constants.Constant.USER_SESSION_KEY;
+
 @Slf4j
 @RequestMapping("/book")
 @RestController
@@ -24,6 +26,7 @@ public class BookController {
 
     @RequestMapping("/getList")
     public List<BookInfo> getList() {
+
 //        BookService bookService = new BookService(); 控制权交给spring来创建
         List<BookInfo> bookInfos = bookService.getBookList();
         return bookInfos;
@@ -49,7 +52,15 @@ public class BookController {
     }
 
     @RequestMapping("/getBookListByPage")
-    public PageResult<BookInfo> getBookListByPage(Integer pageNum) { // 不可以是int 类型，int 类型不可以为空，在此处不会自动初始化为0
+    public Result<PageResult<BookInfo>> getBookListByPage(Integer pageNum, HttpSession session) { // 不可以是int 类型，int 类型不可以为空，在此处不会自动初始化为0
+        Result result = new Result();
+        // 先进行登录校验
+        Object session_key = session.getAttribute(Constant.USER_SESSION_KEY);
+        if (session_key == null) {
+//            result.setCode(ResultStatus.UNLOGIN);
+//            result.setErrMsg("用户未登录");
+            return Result.fail();
+        }
         log.info("pageNum: ----------{}", pageNum);
         // 1. 参数校验
         if (pageNum == null || pageNum < 1) {
@@ -58,7 +69,10 @@ public class BookController {
         // 2. 逻辑处理
         // 如果查的元素为空呢？ 需要前端来进行控制
         PageResult<BookInfo> bookInfoPageResult = bookService.queryBookListByPage(pageNum);
-        return bookInfoPageResult;
+//        result.setCode(ResultStatus.SUCCESS);
+//        result.setResult(bookInfoPageResult);
+        result = Result.success(bookInfoPageResult);
+        return result;
     }
 
     @RequestMapping("/getBookListById")

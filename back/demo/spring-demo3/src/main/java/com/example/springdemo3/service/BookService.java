@@ -1,11 +1,10 @@
 package com.example.springdemo3.service;
 
-import com.example.springdemo3.BookStatus;
+import com.example.springdemo3.enums.BookStatus;
 import com.example.springdemo3.mapper.BookInfoMapper;
 import com.example.springdemo3.model.BookInfo;
 import com.example.springdemo3.model.PageResult;
 import com.example.springdemo3.model.PageQuery;
-import com.example.springdemo3.model.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,7 +45,7 @@ public class BookService {
             bookInfo.setStatusCN(BookStatus.getDestByHash(bookInfo.getStatus()));
         }
         Integer count = bookInfoMapper.getCount();
-        return new PageResult(bookInfos, count, pageQuery);
+        return new PageResult (bookInfos, count, pageQuery);
     }
 
     public Integer addBook(BookInfo bookInfo) {
