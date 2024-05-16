@@ -55,17 +55,19 @@ public class BookController {
     public Result<PageResult<BookInfo>> getBookListByPage(Integer pageNum, HttpSession session) { // 不可以是int 类型，int 类型不可以为空，在此处不会自动初始化为0
         Result result = new Result();
         // 先进行登录校验
-        Object session_key = session.getAttribute(Constant.USER_SESSION_KEY);
-        if (session_key == null) {
+//        Object session_key = session.getAttribute(Constant.USER_SESSION_KEY);
+//        if (session_key == null) {
 //            result.setCode(ResultStatus.UNLOGIN);
 //            result.setErrMsg("用户未登录");
-            return Result.fail();
-        }
+//            return Result.fail();
+//        }
         log.info("pageNum: ----------{}", pageNum);
         // 1. 参数校验
         if (pageNum == null || pageNum < 1) {
             pageNum = 1;
         }
+
+
         // 2. 逻辑处理
         // 如果查的元素为空呢？ 需要前端来进行控制
         PageResult<BookInfo> bookInfoPageResult = bookService.queryBookListByPage(pageNum);
