@@ -35,10 +35,31 @@
     });
 
     $("#checkCaptcha").click(function () {
-        alert("验证码校验");
+        //alert("验证码校验");
+        $.ajax({
+          url : "/admin/check",
+          type: "post",
+          data: {
+            code : $("#inputCaptcha").val()
+          },
+          success: function(result) {
+            if (result != "") {
+              alert(result);
+            } else {
+              location.href = "/success.html"
+            }
+          }
+        })
     });
 
   </script>
 </body>
 
 </html>
+
+<!-- 
+  接口：
+  url: /captcha/cap
+  param: 无
+  return: pic和code
+ -->
