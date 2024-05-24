@@ -1,6 +1,7 @@
 package com.example.springdemo3.config;
 
 import com.example.springdemo3.intercept.LoginIntercept;
+import com.example.springdemo3.intercept.LoginIntercept2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -11,6 +12,7 @@ public class WebConfig implements WebMvcConfigurer {
     // 配置拦截器
     @Autowired
     private LoginIntercept loginIntercept; // 创建被管理对象的类也要交给spring管理
+    private LoginIntercept2 loginIntercept2;
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         WebMvcConfigurer.super.addInterceptors(registry);
@@ -20,8 +22,13 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/css/**")
                 .excludePathPatterns("/js/**")
                 .excludePathPatterns("/pic/**")
-                .excludePathPatterns("/**/*.html") ;// 拦截的路径 按照映射的路由进行排除，而不是按照文件夹
+                .excludePathPatterns("/**/*.html");// 拦截的路径 按照映射的路由进行排除，而不是按照文件夹
 
-
+        registry.addInterceptor(loginIntercept2).addPathPatterns("/**/*.html")
+                .excludePathPatterns("/user/login")
+                .excludePathPatterns("/css/**")
+                .excludePathPatterns("/js/**")
+                .excludePathPatterns("/pic/**")
+                .excludePathPatterns("/**/*.html") ;
     }
 }

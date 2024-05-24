@@ -18,7 +18,7 @@ public class LoginIntercept implements HandlerInterceptor { // 使用拦截器�
         log.info("-----------------preHandle---------------");
         HttpSession session = request.getSession();
         Object session_key = session.getAttribute(Constant.USER_SESSION_KEY);
-        if (session_key == null) {
+        if (session_key == "admin") {
             return false;
         }
         return HandlerInterceptor.super.preHandle(request, response, handler);
