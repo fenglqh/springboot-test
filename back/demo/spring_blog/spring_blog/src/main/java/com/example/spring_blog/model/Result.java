@@ -12,4 +12,23 @@ public class Result {
 //    返回数据 还可以用泛型
     private Object data;
 
+    public Result success(Object data) {
+        Result result = new Result();
+        result.setCode(ResultStatus.SUCCESS);
+        result.setData(data);
+        return result;
+    }
+    public Result fail(String errMsg) {
+        Result result = new Result();
+        result.setCode(ResultStatus.FAIL);
+        result.setErrMsg(errMsg);
+        result.setData(null);
+        return result;
+    }
+    public Result fail() {
+        Result result = new Result();
+        result.setCode(ResultStatus.FAIL);
+        result.setErrMsg("失败");
+        return result;
+    }
 }
