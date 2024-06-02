@@ -26,6 +26,14 @@ public interface UserMapper {
     public UserInfo selectById(Integer id);
 
     /**
+     * 查询用户名是否存在
+     * @param user
+     * @return
+     */
+    @Select("select * from user where user_name = #{user} and delete_flag = 0")
+    public UserInfo selectByUser(String user);
+
+    /**
      * 增加用户信息
      * @param userInfo
      * @return
