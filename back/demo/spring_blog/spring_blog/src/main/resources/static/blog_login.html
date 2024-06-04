@@ -41,7 +41,22 @@
     <script src="js/jquery.min.js"></script>
     <script>
         function login() {
-            location.assign("blog_list.html");
+            $.ajax({
+                type: "post",
+                url: "/user/login",
+                data: {
+                    "username" : $("#username").val(),
+                    "password" : $("#password").val()
+                },
+                success : function(res) {
+                    if (res.code == "SUCCESS") {
+                        location.assign("blog_list.html");
+                    } else {
+                        alert(res.errMsg);
+                    }
+                }
+            })
+            
         }
     </script>
 </body>
